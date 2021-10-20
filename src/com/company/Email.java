@@ -1,32 +1,51 @@
 package com.company;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Email {
     private String firstName;
     private String lastName;
-    private String pw;
+    private String email;
+    private String password;
     private String dep;
     private double mailBoxCap;
-    private String alEmail;
+    private String altEmail;
+    private String companySuffix = ".abcompany.com";
 
     // Constructor to receive first and last name
     public Email(String fName, String lName) {
         this.firstName = fName;
         this.lastName = lName;
 
-        getDep();
-        mailBoxCap = setCap();
+        // Call method asking for department
+        this.dep = getDep();
+        // Call method asking for box cap
+        this.mailBoxCap = setCap();
+        // Call method to generate random pw
+        this.password = setInitialPW(7);
+        // Combine element to generate email
+        email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@" + dep + companySuffix;
+        System.out.println(email);
     }
 
     // set dep - department
-    private void getDep() {
+    private String getDep() {
         System.out.print("Enter department: ");
         Scanner input = new Scanner(System.in);
-        dep = input.next();
+        return input.next();
     }
 
     // Generate random password
+    private String setInitialPW(int length) {
+        String pwSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%";
+        char[] pw =  new char[length];
+        for (int i = 0; i < length; i++) {
+            int rand = (int) (Math.random() * pwSet.length());
+            pw[i] = pwSet.charAt(rand);
+        }
+        return new String(pw);
+    }
 
     // Set mailbox cap
     private double setCap() {
@@ -37,4 +56,14 @@ public class Email {
     }
 
     // Change password
+    private void changePW() {
+        System.out.print("Enter new password: ");
+        Scanner input = new Scanner(System.in);
+        this.password = input.next();
+    }
+
+    // Set alternative email
+    public void setAltEmail(String altE) {
+        this.altEmail = altE;
+    }
 }
