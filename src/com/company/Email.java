@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Scanner;
+
 public class Email {
     private String firstName;
     private String lastName;
@@ -12,12 +14,27 @@ public class Email {
     public Email(String fName, String lName) {
         this.firstName = fName;
         this.lastName = lName;
+
+        getDep();
+        mailBoxCap = setCap();
     }
-    // Ask user input for department
+
+    // set dep - department
+    private void getDep() {
+        System.out.print("Enter department: ");
+        Scanner input = new Scanner(System.in);
+        dep = input.next();
+    }
 
     // Generate random password
 
     // Set mailbox cap
+    private double setCap() {
+        System.out.print("Enter mailbox capacity: ");
+        Scanner input = new Scanner(System.in);
+        double cap = input.nextDouble();
+        return cap;
+    }
 
     // Change password
 }
