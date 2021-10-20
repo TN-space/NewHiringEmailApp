@@ -1,6 +1,5 @@
 package com.company;
 
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Email {
@@ -56,7 +55,7 @@ public class Email {
     }
 
     // Change password
-    private void changePW() {
+    public void changePW() {
         System.out.print("Enter new password: ");
         Scanner input = new Scanner(System.in);
         this.password = input.next();
@@ -65,5 +64,17 @@ public class Email {
     // Set alternative email
     public void setAltEmail(String altE) {
         this.altEmail = altE;
+    }
+
+    public String getAltEmail() {return altEmail;}
+    public double getMailBoxCap() {return mailBoxCap;}
+    public String getPassword() {return password;}
+
+    // show all relevant data (name, company email, mailbox capacity)
+    public String showInfo() {
+        return "Name: " + firstName + " " + lastName +
+                "\nEmail: " + email +
+                "\nMailbox capacity: " + mailBoxCap + "mb." +
+                "\nPassword: " + password;
     }
 }
